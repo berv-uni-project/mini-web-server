@@ -14,7 +14,6 @@ Server yang digunakan dengan spesifikasi berikut:
 * Web Server buatan pada port 8080
 * Dijalankan satu per satu saat percobaan
 
-
 ### Tools Benchmark
 
 #### Gobench
@@ -49,7 +48,8 @@ Buka : [cmpxchg16/gobench](https://github.com/cmpxchg16/gobench)
 
 #### htop
 
-* Melihat process yang berlangsung dan penggunaan memori
+* Melihat process yang berlangsung dan penggunaan memori.
+* Diinstall pada server.
 
 ### Hasil Percobaan
 
@@ -145,9 +145,19 @@ Memori yand digunakan sekitar `184 MB`.
 
 ### Simpulan hasil benchmark
 
-Pada dasarnya penggunaan memori pada Apache dan Nginx sama tidak jauh berbeda. Berbeda sekitar 0,1 GB saja. Sedangkan respons time untuk nginx lebih baik dibandingkan apache.
+Pada dasarnya penggunaan memori pada Apache dan Nginx sama tidak jauh berbeda. Berbeda sekitar 0,1 GB saja.
+
+Sedangkan respons time untuk nginx lebih baik dibandingkan apache. Pada nginx dapat lebih baik walaupun perbedaan file yang dikembalikan cukup besar.
 
 ## Petunjuk Penggunaan Program
+
+### Dependency Program
+
+* libevent
+
+Instalasi lihat di : http://libevent.org/
+
+### Compile program
 
 Untuk mengcompile program cukup lakukan :
 
@@ -155,9 +165,55 @@ Untuk mengcompile program cukup lakukan :
 	make all
 ```	
 
-Sangat simpel. Sedangkan menjalankannya cukup dengan `./mini-web-server`.
+### Instalasi untuk dapat digunakan pada terminal
+
+```
+	sudo make install
+```
+
+Program akan ditaruh pada `/opt/mws`.
+
+### Menghapus instalasi pada direktori default (opt/mws)
+
+```
+	sudo make remove
+```
+
+### Konfigurasi
+
+Pastikan terdapat direktori config di lokasi program dan terdapat `config.json`.
+
+Format yang digunakan yaitu: 
+```
+{
+	"directory": "lokasi root directory server"
+	"name_server": "ip atau name server yang akan di bind"
+	"port": nomor port
+}
+```
+
+Contoh: 
+```
+{
+	"directory": "htdocs"
+	"name_server": "localhost"
+	"port": 8080
+}
+```
+
+### Jalankan program
+
+Sangat simpel. Menjalankannya cukup dengan `./mini-web-server`. Pastikan konfigurasi sudah benar!
 
 ### Hasil Tes Menggunakan Tools Benchmark
+
+Perintah yang digunakan :
+
+```
+	$>/tmp/bin/gobench -u http://localhost:8080/500bytes.html -k=true -c 10000 -r 150
+	$>/tmp/bin/gobench -u http://localhost:8080/20kb.html -k=true -c 10000 -r 150
+
+```
 
 #### 500 bytes file
 
