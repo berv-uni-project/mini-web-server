@@ -273,8 +273,14 @@ void configure() {
 	cJSON_Delete(root);
 }
 
+void show_license() {
+	char * license = read_file("LICENSE-TEXT");
+	printf("%s\n", license);
+}
+
 int main(int argc, char **argv) {
 	configure();
+	show_license();
 	struct event_base *base;
 	struct evhttp *http;
 	struct evhttp_bound_socket *handle;
