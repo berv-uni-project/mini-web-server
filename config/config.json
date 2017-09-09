@@ -1,0 +1,5 @@
+{
+    "directory": "htdocs",
+    "name_server": "localhost",
+    "port": 8080
+}
