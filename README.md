@@ -251,6 +251,36 @@ Memori yang digunakan sekitar `215 MB`.
 
 Respons time yang lebih kecil dibandingkan dengan apache dan nginx, penggunaan memori pun masih lebih besar.
 
+## Tanpa Menggunakan Build in Evhttp
+
+### Compile
+
+Jika hanya ingin meng-compile dapat menggunakan perintah berikut.
+
+```
+	make small
+```
+
+### Installasi
+
+Dapat menggunakan:
+
+```
+	make install
+```
+
+Hal ini akan memberikan instalasi mini-web-server dan mws.
+
+### Jalankan
+
+```
+ ./mws
+```
+
+### Konfigurasi
+
+File konfigurasi yang digunakan sama dengan mini-web-server.
+
 # About
 
 Bervianto Leo P - 13514047
