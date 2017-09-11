@@ -2,6 +2,29 @@
 
 Mini Web Server build with C using libevent.
 
+# Daftar Isi
+
+* [Percobaan dengan Web Server Apache & NGINX](#percobaan-dengan-web-server-apache-&-nginx)
+	* [Server yang Digunakan](#server-yang-digunakan)
+		* [Tools Benchmark](#tools-benchmark)
+			* [Gobench](#gobench)
+			* [Monit](#monit)
+			* [htop](#htop)
+		* [Hasil Percobaan](#hasil-percobaan)
+			* [Apache](#apache)
+			* [Nginx](#nginx)
+		* [Simpulan Hasil Benchmark](#simpulan-hasil-benchmark)
+* [Petunjuk Penggunaan Program](#petunjuk-penggunaan-program)
+	* [Dependency Program](#dependency-program)
+	* [Compile Program](#compile-program)
+	* [Instalasi](#instalasi-untuk-dapat-digunakan-pada-terminal)
+	* [Menghapus instalasi](#menghapus-instalasi)		
+	* [Konfigurasi](#konfigurasi)
+	* [Hasil Test](#hasil-tes-menggunakan-tools-benchmark)
+* [Program Kecil Lain](#tanpa-menggunakan-build-in-evhttp)
+* [Tentang Pembuat](#about)
+* [Lisensi](#license)
+
 ## Percobaan dengan Web Server Apache & NGINX
 
 ### Server yang digunakan
@@ -173,8 +196,9 @@ Untuk mengcompile program cukup lakukan :
 
 Program akan ditaruh pada `/opt/mws`.
 
-### Menghapus instalasi pada direktori default (opt/mws)
+### Menghapus instalasi
 
+Secara default di install pada direktori `opt/mws`, jika demikian lakukan perintah berikut.
 ```
 	sudo make remove
 ```
@@ -288,8 +312,11 @@ Bervianto Leo P - 13514047
 # Reference
 
 [1] https://github.com/libevent/libevent
+
 [2] http://www.wangafu.net/~nickm/libevent-book/
+
 [3] https://github.com/libevent/libevent/blob/master/sample/http-server.c
+
 [4] https://www.ibm.com/developerworks/aix/library/au-libev/
 
 # LICENSE
