@@ -6,7 +6,7 @@ Mini Web Server build with C using libevent.
 
 ### Server yang digunakan
 
-Server yang digunakan dengan spesifikasi berikut: 
+Server yang digunakan dengan spesifikasi berikut:
 * Intel Core i3-5010U 2.1 GHz (dual core)
 * Memori 6 GB
 * Apache2 port 10000
@@ -27,18 +27,18 @@ Buka : [cmpxchg16/gobench](https://github.com/cmpxchg16/gobench)
 
 	* Install Go
 	* Lakukan perintah
-	
+
 	```
 		GOPATH=/tmp/ go get github.com/valyala/fasthttp
 		GOPATH=/tmp/ go get github.com/cmpxchg16/gobench
 	```
-	
+
 	* Jalankan web server
 	* Jalankan gobench (dapat dalam GET atau POST), dalam percobaan ini cukup dalam GET. (Jika diinstall ke dalam /tmp/)
 	```
 		$>/tmp/bin/gobench -u http://localhost:80 -k=true -c 500 -t 10
 	```
-	
+
 * Benchmark akan dilakukan dengan 10000 koneksi konkuren dan 150 kali request.
 
 #### Monit
@@ -163,7 +163,7 @@ Untuk mengcompile program cukup lakukan :
 
 ```
 	make all
-```	
+```
 
 ### Instalasi untuk dapat digunakan pada terminal
 
@@ -183,7 +183,7 @@ Program akan ditaruh pada `/opt/mws`.
 
 Pastikan terdapat direktori config di lokasi program dan terdapat `config.json`.
 
-Format yang digunakan yaitu: 
+Format yang digunakan yaitu:
 ```
 {
 	"directory": "lokasi root directory server"
@@ -192,7 +192,7 @@ Format yang digunakan yaitu:
 }
 ```
 
-Contoh: 
+Contoh:
 ```
 {
 	"directory": "htdocs"
@@ -250,6 +250,17 @@ Test time:                              19 sec
 Memori yang digunakan sekitar `215 MB`.
 
 Respons time yang lebih kecil dibandingkan dengan apache dan nginx, penggunaan memori pun masih lebih besar.
+
+# About
+
+Bervianto Leo P - 13514047
+
+# Reference
+
+[1] https://github.com/libevent/libevent
+[2] http://www.wangafu.net/~nickm/libevent-book/
+[3] https://github.com/libevent/libevent/blob/master/sample/http-server.c
+[4] https://www.ibm.com/developerworks/aix/library/au-libev/
 
 # LICENSE
 

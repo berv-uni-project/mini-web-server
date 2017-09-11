@@ -111,7 +111,7 @@ static int encode_request_to_file_path(const char* uri, char** whole_path) {
 	}
 
 	if (S_ISDIR(st.st_mode)) {
-		
+
 		// Find index.html of this page
 		if ((*whole_path)[strlen(*whole_path) - 1] == '/') {
 			strcat(*whole_path, "index.html");
@@ -130,11 +130,58 @@ static int encode_request_to_file_path(const char* uri, char** whole_path) {
 	return st.st_size;
 }
 
+static void dump_request_cb(struct evhttp_request *req, void *arg) {
+	const char *cmdtype;
+	struct evkeyvalq *headers;
+	struct evkeyval *header;
+	struct evbuffer *buf;
+
+	switch (evhttp_request_get_command(req)) {
+	case EVHTTP_REQ_GET: cmdtype = "GET"; break;
+	case EVHTTP_REQ_POST: cmdtype = "POST"; break;
+	case EVHTTP_REQ_HEAD: cmdtype = "HEAD"; break;
+	case EVHTTP_REQ_PUT: cmdtype = "PUT"; break;
+	case EVHTTP_REQ_DELETE: cmdtype = "DELETE"; break;
+	case EVHTTP_REQ_OPTIONS: cmdtype = "OPTIONS"; break;
+	case EVHTTP_REQ_TRACE: cmdtype = "TRACE"; break;
+	case EVHTTP_REQ_CONNECT: cmdtype = "CONNECT"; break;
+	case EVHTTP_REQ_PATCH: cmdtype = "PATCH"; break;
+	default: cmdtype = "unknown"; break;
+	}
+
+	printf("Received a %s request for %s\nHeaders:\n",
+	    cmdtype, evhttp_request_get_uri(req));
+
+	headers = evhttp_request_get_input_headers(req);
+	for (header = headers->tqh_first; header;
+	    header = header->next.tqe_next) {
+		printf("  %s: %s\n", header->key, header->value);
+	}
+
+	buf = evhttp_request_get_input_buffer(req);
+	puts("Input data: <<<");
+	while (evbuffer_get_length(buf)) {
+		int n;
+		char cbuf[128];
+		n = evbuffer_remove(buf, cbuf, sizeof(cbuf));
+		if (n > 0)
+			(void) fwrite(cbuf, 1, n, stdout);
+	}
+	puts(">>>");
+
+	evhttp_send_reply(req, 200, "OK", NULL);
+}
+
 static void send_document_cb(struct evhttp_request *req, void *arg) {
 	struct evbuffer *evb = NULL;
 	const char *uri = evhttp_request_get_uri(req);
 	char *whole_path = NULL;
 	int fd = -1, fsize;
+
+	if (evhttp_request_get_command(req) != EVHTTP_REQ_GET) {
+		dump_request_cb(req, arg);
+		return;
+	}
 
 	printf("[GET] Request <%s>",  uri);
 
@@ -301,14 +348,15 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
-	evhttp_set_gencb(http, send_document_cb, argv[1]);
+	evhttp_set_cb(http, "/dump", dump_request_cb, NULL);
+	evhttp_set_gencb(http, send_document_cb, NULL);
 	handle = evhttp_bind_socket_with_handle(http, name_server, port);
 	if (!handle) {
 		fprintf(stderr, "couldn't bind to port %d. Exiting.\n",
 			(int)port);
 		return 1;
 	}
-	
+
 	diplay_socket_information(handle);
 	event_base_dispatch(base);
 	return 0;
