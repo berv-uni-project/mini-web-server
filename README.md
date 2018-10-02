@@ -4,7 +4,7 @@ Mini Web Server build with C using libevent.
 
 # Daftar Isi
 
-* [Percobaan dengan Web Server Apache & NGINX](#percobaan-dengan-web-server-apache-&-nginx)
+* [Percobaan dengan Web Server Apache dan NGINX](#percobaan-dengan-web-server-apache-dan-nginx)
 	* [Server yang Digunakan](#server-yang-digunakan)
 		* [Tools Benchmark](#tools-benchmark)
 			* [Gobench](#gobench)
@@ -25,7 +25,7 @@ Mini Web Server build with C using libevent.
 * [Tentang Pembuat](#about)
 * [Lisensi](#license)
 
-## Percobaan dengan Web Server Apache & NGINX
+## Percobaan dengan Web Server Apache dan NGINX
 
 ### Server yang digunakan
 
