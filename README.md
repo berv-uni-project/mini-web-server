@@ -4,7 +4,7 @@ Mini Web Server build with C using libevent.
 
 # Daftar Isi
 
-* [Percobaan dengan Web Server Apache & NGINX](#percobaan-dengan-web-server-apache-&-nginx)
+* [Percobaan dengan Web Server Apache dan NGINX](#percobaan-dengan-web-server-apache-dan-nginx)
 	* [Server yang Digunakan](#server-yang-digunakan)
 		* [Tools Benchmark](#tools-benchmark)
 			* [Gobench](#gobench)
@@ -25,7 +25,7 @@ Mini Web Server build with C using libevent.
 * [Tentang Pembuat](#about)
 * [Lisensi](#license)
 
-## Percobaan dengan Web Server Apache & NGINX
+## Percobaan dengan Web Server Apache dan NGINX
 
 ### Server yang digunakan
 
@@ -51,14 +51,14 @@ Buka : [cmpxchg16/gobench](https://github.com/cmpxchg16/gobench)
 	* Install Go
 	* Lakukan perintah
 
-	```
+	```bash
 		GOPATH=/tmp/ go get github.com/valyala/fasthttp
 		GOPATH=/tmp/ go get github.com/cmpxchg16/gobench
 	```
 
 	* Jalankan web server
 	* Jalankan gobench (dapat dalam GET atau POST), dalam percobaan ini cukup dalam GET. (Jika diinstall ke dalam /tmp/)
-	```
+	```bash
 		$>/tmp/bin/gobench -u http://localhost:80 -k=true -c 500 -t 10
 	```
 
@@ -82,7 +82,7 @@ Percobaan apache dilakukan dengan 500 bytes dan 20 KB.
 
 Adapun perintah yang digunakan yaitu :
 
-```
+```bash
 	$>/tmp/bin/gobench -u http://localhost:10000/500bytes.html -k=true -c 10000 -r 10
 	$>/tmp/bin/gobench -u http://localhost:10000/20kb.html -k=true -c 10000 -r 10
 ```
@@ -127,7 +127,7 @@ Percobaan nginx dilakukan dengan 500 bytes dan 20 KB.
 
 Adapun perintah yang digunakan yaitu :
 
-```
+```bash
 	$>/tmp/bin/gobench -u http://localhost:80/500bytes.html -k=true -c 10000 -r 150
 	$>/tmp/bin/gobench -u http://localhost:80/20kb.html -k=true -c 10000 -r 150
 ```
@@ -184,13 +184,13 @@ Instalasi lihat di : http://libevent.org/
 
 Untuk mengcompile program cukup lakukan :
 
-```
+```bash
 	make all
 ```
 
 ### Instalasi untuk dapat digunakan pada terminal
 
-```
+```bash
 	sudo make install
 ```
 
@@ -199,7 +199,7 @@ Program akan ditaruh pada `/opt/mws`.
 ### Menghapus instalasi
 
 Secara default di install pada direktori `opt/mws`, jika demikian lakukan perintah berikut.
-```
+```bash
 	sudo make remove
 ```
 
@@ -208,19 +208,19 @@ Secara default di install pada direktori `opt/mws`, jika demikian lakukan perint
 Pastikan terdapat direktori config di lokasi program dan terdapat `config.json`.
 
 Format yang digunakan yaitu:
-```
+```json
 {
-	"directory": "lokasi root directory server"
-	"name_server": "ip atau name server yang akan di bind"
-	"port": nomor port
+	"directory": "lokasi root directory server",
+	"name_server": "ip atau name server yang akan di bind",
+	"port": "nomor_port"
 }
 ```
 
 Contoh:
-```
+```json
 {
-	"directory": "htdocs"
-	"name_server": "localhost"
+	"directory": "htdocs",
+	"name_server": "localhost",
 	"port": 8080
 }
 ```
@@ -233,7 +233,7 @@ Sangat simpel. Menjalankannya cukup dengan `./mini-web-server`. Pastikan konfigu
 
 Perintah yang digunakan :
 
-```
+```bash
 	$>/tmp/bin/gobench -u http://localhost:8080/500bytes.html -k=true -c 10000 -r 150
 	$>/tmp/bin/gobench -u http://localhost:8080/20kb.html -k=true -c 10000 -r 150
 
@@ -281,7 +281,7 @@ Respons time yang lebih kecil dibandingkan dengan apache dan nginx, penggunaan m
 
 Jika hanya ingin meng-compile dapat menggunakan perintah berikut.
 
-```
+```bash
 	make small
 ```
 
@@ -289,7 +289,7 @@ Jika hanya ingin meng-compile dapat menggunakan perintah berikut.
 
 Dapat menggunakan:
 
-```
+```bash
 	make install
 ```
 
@@ -297,7 +297,7 @@ Hal ini akan memberikan instalasi mini-web-server dan mws.
 
 ### Jalankan
 
-```
+```bash
  ./mws
 ```
 
