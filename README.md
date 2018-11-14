@@ -1,6 +1,7 @@
 # Mini Web Server
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bdd338d821af48f28649dff690b8ac9d)](https://app.codacy.com/app/berviantoleo/mini-web-server?utm_source=github.com&utm_medium=referral&utm_content=berv-uni-project/mini-web-server&utm_campaign=Badge_Grade_Settings)
+[![Build Status](https://travis-ci.org/berv-uni-project/mini-web-server.svg?branch=master)](https://travis-ci.org/berv-uni-project/mini-web-server)
 
 Mini Web Server build with C using libevent.
 
