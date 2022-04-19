@@ -1,9 +1,0 @@
-language: c
-sudo: required
-
-install:
-  - sudo apt install libevent-dev
-
-script:
-  - make all
-  - make small
